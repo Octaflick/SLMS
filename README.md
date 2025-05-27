@@ -5,3 +5,6 @@ Uses Libraries:
 - Xlsx Writer
 - hashlib
 - pandas
+
+Documentation and Presenentation
+https://docs.google.com/document/d/1uLpMEvXzwjtW7bnEs2eJlflO90rG5Khx3zo3pm_729o/edit?usp=sharing
