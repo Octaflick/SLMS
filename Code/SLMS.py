@@ -6,7 +6,7 @@ from ttkthemes import ThemedTk
 import xlsxwriter
 
 # Global variables
-excel_file_path = "D:/Class XI/Computer Science/Sources/LISTS.xlsx"
+excel_file_path = "C:/Users/Vedant/Documents/GitHub/SLMS/DB/LISTS.xlsx"
 sheet_name_student = "Student List"
 sheet_name_book = "Book List"
 student_data = None
@@ -19,7 +19,7 @@ def hash_password(password):
 
 def authenticate(username, password):
     # User credentials (username: hashed_password)
-    user_credentials = {"user": hash_password("pass")}
+    user_credentials = {"username": hash_password("pass")}
 
     # Check if the username exists and the password is correct
     return username in user_credentials and user_credentials[username] == hash_password(password)
@@ -28,14 +28,10 @@ def read_excel(excel_file_path, sheet_name):
     try:
         return pd.read_excel(excel_file_path, sheet_name=sheet_name)
     except FileNotFoundError:
-        messagebox.showerror("Error", f"File not found: {excel_file_path}")
-        return None
-    except pd.errors.SheetNotFound:
-        messagebox.showerror("Error", f"Sheet not found: {sheet_name}")
-        return None
-    except Exception as e:
-        messagebox.showerror("Error", f"An error occurred: {e}")
-        return None
+        messagebox.showerror("File Not Found", f"{excel_file_path} not found.")
+    except ValueError:  # <-- Change this line
+        messagebox.showerror("Sheet Not Found", f"{sheet_name} sheet not found in the file.")
+    return None
 
 def write_excel(student_data, book_data, excel_file_path):
     try:
